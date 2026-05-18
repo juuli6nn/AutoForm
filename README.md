@@ -32,20 +32,9 @@ AutoForm is a Chrome extension designed specifically for FEU Tech students to si
 ## 🚀 Installation
 
 ### From Chrome Web Store (Recommended)
-1. Visit the [Chrome Web Store page](#) (link coming soon)
+1. Visit the [Chrome Web Store page](https://chromewebstore.google.com/detail/lekpopkfjaohjmcibpbhedohepknohha?utm_source=item-share-cb)
 2. Click "Add to Chrome"
 3. Confirm the installation
-
-### Manual Installation (Developer Mode)
-1. Download or clone this repository
-   ```bash
-   git clone https://github.com/yourusername/autoform.git
-   ```
-2. Open Chrome and navigate to `chrome://extensions/`
-3. Enable "Developer mode" (toggle in top-right corner)
-4. Click "Load unpacked"
-5. Select the `autoform` folder
-6. The extension is now installed!
 
 ## 📝 How to Use
 
