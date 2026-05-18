@@ -1,5 +1,5 @@
 {
-  "name": "Auto Answer V2",
+  "name": "AutoForm",
   "manifest_version": 3,
   "version": "1.0",
   "permissions": ["scripting", "tabs"],
