@@ -1,7 +1,7 @@
 # AutoForm - FEU Tech Evaluation Auto-fill Extension
 
 <div align="center">
-  <img src="instagramlogo.jpg" alt="AutoForm Logo" width="120" height="120">
+  <img src="Banner.jpg" alt="AutoForm Logo" width="120" height="120">
   
   **Streamline your FEU Tech teacher evaluations with one click**
   
@@ -25,13 +25,6 @@ AutoForm is a Chrome extension designed specifically for FEU Tech students to si
 - **⚡ Instant Feedback** - Visual confirmation when forms are filled
 - **🎨 Modern UI** - Clean, professional interface with smooth animations
 
-## 🖼️ Screenshots
-
-### Light Mode
-![Light Mode](screenshot-light.png)
-
-### Dark Mode
-![Dark Mode](screenshot-dark.png)
 
 ## 🚀 Installation
 
@@ -114,16 +107,10 @@ Found a bug or have a feature idea? Please open an issue on GitHub:
 
 This extension is created by FEU Tech students to help streamline the evaluation process. Please use it responsibly and provide honest feedback to help improve the quality of education at FEU Tech.
 
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 👨‍💻 Author
 
-**juuli6nn**
-
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Instagram: [@juuli6nn](https://instagram.com/juuli6nn)
+- GitHub: [@yourusername](https://github.com/juuli6nn)
 
 ## 🙏 Acknowledgments
 
@@ -133,8 +120,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<div align="center">
-  Made with ❤️ for FEU Tech students
-  
+<div align="center"> 
   **If you find this helpful, please ⭐ star this repository!**
 </div>
