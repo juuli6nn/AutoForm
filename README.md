@@ -3,7 +3,7 @@
 # AutoForm  
 ### FEU Tech Evaluation Auto-fill Extension
 
-<img src="Banner.jpg" alt="AutoForm Banner" width="420">
+<img src="Banner.png" alt="AutoForm Banner" width="420">
 
 **Streamline your FEU Tech teacher evaluations with one click**
 
