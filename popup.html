@@ -1,32 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Auto Fill Evaluation</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoForm - Evaluation Auto-fill</title>
   <link rel="stylesheet" href="popup.css">
-  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-  <div class="title-container">
-    <h1>Auto Fill Evaluation</h1>
-    <p class="description">Simple extension to fill an evaluation form!</p>
+  <!-- BRANDING HEADER -->
+  <div class="branding">
+    <div class="branding-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="12" y1="18" x2="12" y2="12"></line>
+        <line x1="9" y1="15" x2="15" y2="15"></line>
+      </svg>
+    </div>
+    <h1 class="branding-title">AutoForm</h1>
+    <p class="branding-subtitle">Evaluation form auto-fill for FEU Tech students</p>
   </div>
-  <div class="container">
-    <button id="fillHighest">Fill Highest</button>
-    <button id="fillLowest">Fill Lowest</button>
-    <div class="custom-rating">
-      <div class="rating-label">Custom Rating:</div>
+
+  <div class="popup">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-left">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>Active</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg id="sunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg id="moonIcon" style="display: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FILL HIGHEST BUTTON -->
+    <button class="action-button btn-highest" id="fillHighest">
+      <span>Fill Highest</span>
+      <div class="button-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </div>
+    </button>
+
+    <!-- FILL LOWEST BUTTON -->
+    <button class="action-button btn-lowest" id="fillLowest">
+      <span>Fill Lowest</span>
+      <div class="button-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </button>
+
+    <!-- CUSTOM RATING CARD -->
+    <div class="rating-card">
+      <div class="rating-header">
+        <span class="rating-label">Custom Rating</span>
+        <span class="rating-hint">Scale 1-5</span>
+      </div>
       <div class="rating-controls">
-        <input type="number" id="customRating" min="1" max="5" placeholder="1-5" class="rating-input">
-        <button id="fillCustom">Fill</button>
+        <div class="slider-container">
+          <input type="range" min="1" max="5" value="3" class="slider" id="ratingSlider" aria-label="Rating value">
+          <span class="slider-value" id="sliderValue">3</span>
+        </div>
+        <button class="btn-fill" id="fillCustom">
+          <span id="fillText">Fill</span>
+          <svg id="fillIcon" style="display: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </button>
       </div>
     </div>
   </div>
-  <div class="user-info">
-    <img src="instagramlogo.jpg" alt="logo" class="profile-pic">
-    <div class="username">
-      <a href="https://www.instagram.com/juuli6nn/" target="_blank" class="handle">@juuli6nn</a>
-    </div>
+
+  <!-- CREATOR CREDIT (OUTSIDE CONTAINER) -->
+  <div class="creator-credit-external">
+    <span>Created by juuli6nn</span>
   </div>
+
   <script src="popup.js"></script>
 </body>
 </html>

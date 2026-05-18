@@ -1,35 +1,68 @@
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('fillHighest').addEventListener('click', () => {
-    fillForm('5');
-  });
+// ============================================
+// THEME TOGGLE
+// ============================================
+const themeToggle = document.getElementById('themeToggle');
+const sunIcon = document.getElementById('sunIcon');
+const moonIcon = document.getElementById('moonIcon');
+const body = document.body;
 
-  document.getElementById('fillLowest').addEventListener('click', () => {
-    fillForm('1');
-  });
+// Check system preference on load
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (prefersDark) {
+  body.classList.add('dark');
+  sunIcon.style.display = 'none';
+  moonIcon.style.display = 'block';
+}
 
-  document.getElementById('fillCustom').addEventListener('click', () => {
-    const val = document.getElementById('customRating').value;
-    if (val >= 1 && val <= 5) {
-      fillForm(val);
-    } else {
-      alert('Please enter a number between 1 and 5');
-    }
-  });
+// Toggle theme on button click
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark');
+  const isDark = body.classList.contains('dark');
+  
+  sunIcon.style.display = isDark ? 'none' : 'block';
+  moonIcon.style.display = isDark ? 'block' : 'none';
+});
 
-  function fillForm(value) {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.scripting.executeScript({
-        target: { tabId: tabs[0].id },
-        func: (val) => {
-          const dropdowns = document.querySelectorAll('select');
-          console.log('Dropdowns found:', dropdowns.length);
-          dropdowns.forEach(dropdown => {
-            dropdown.value = val;
-            dropdown.dispatchEvent(new Event('change'));
-          });
-        },
-        args: [value]
-      });
-    });
-  }
+// ============================================
+// SLIDER VALUE DISPLAY
+// ============================================
+const slider = document.getElementById('ratingSlider');
+const sliderValue = document.getElementById('sliderValue');
+
+slider.addEventListener('input', (e) => {
+  sliderValue.textContent = e.target.value;
+});
+
+// ============================================
+// FILL BUTTON FLASH ANIMATION
+// ============================================
+const fillButton = document.getElementById('fillCustom');
+const fillText = document.getElementById('fillText');
+const fillIcon = document.getElementById('fillIcon');
+
+fillButton.addEventListener('click', () => {
+  // Add success state
+  fillButton.classList.add('success');
+  fillText.style.display = 'none';
+  fillIcon.style.display = 'block';
+
+  // Remove success state after 1.5s
+  setTimeout(() => {
+    fillButton.classList.remove('success');
+    fillText.style.display = 'block';
+    fillIcon.style.display = 'none';
+  }, 1500);
+});
+
+// ============================================
+// ACTION BUTTON HANDLERS (Placeholder)
+// ============================================
+document.getElementById('fillHighest').addEventListener('click', () => {
+  console.log('Fill Highest clicked');
+  // Add your fill highest logic here
+});
+
+document.getElementById('fillLowest').addEventListener('click', () => {
+  console.log('Fill Lowest clicked');
+  // Add your fill lowest logic here
 });
