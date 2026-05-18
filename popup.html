@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auto Fill Evaluation</title>
+  <link rel="stylesheet" href="popup.css">
+  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+</head>
+<body>
+  <div class="title-container">
+    <h1>Auto Fill Evaluation</h1>
+    <p class="description">Simple extension to fill an evaluation form!</p>
+  </div>
+  <div class="container">
+    <button id="fillHighest">Fill Highest</button>
+    <button id="fillLowest">Fill Lowest</button>
+    <div class="custom-rating">
+      <div class="rating-label">Custom Rating:</div>
+      <div class="rating-controls">
+        <input type="number" id="customRating" min="1" max="5" placeholder="1-5" class="rating-input">
+        <button id="fillCustom">Fill</button>
+      </div>
+    </div>
+  </div>
+  <div class="user-info">
+    <img src="instagramlogo.jpg" alt="logo" class="profile-pic">
+    <div class="username">
+      <a href="https://www.instagram.com/juuli6nn/" target="_blank" class="handle">@juuli6nn</a>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
