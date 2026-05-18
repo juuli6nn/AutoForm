@@ -1,15 +1,19 @@
 <div align="center">
-# AutoForm - FEU Tech Evaluation Auto-fill Extension
-<div>
-  
-<div align="center">
-  <img src="Banner.jpg" alt="Banner" width="360" height="120">
-  
-  **Streamline your FEU Tech teacher evaluations with one click**
-  
-  [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?logo=google-chrome)](https://chrome.google.com/webstore)
-  [![Version](https://img.shields.io/badge/version-1.0-orange.svg)](manifest.json)
+
+# AutoForm  
+### FEU Tech Evaluation Auto-fill Extension
+
+<img src="Banner.jpg" alt="AutoForm Banner" width="420">
+
+**Streamline your FEU Tech teacher evaluations with one click**
+
+<br>
+
+[![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?logo=google-chrome)](https://chrome.google.com/webstore)
+[![Version](https://img.shields.io/badge/version-1.0-orange.svg)](manifest.json)
+
 </div>
+
 
 ---
 
