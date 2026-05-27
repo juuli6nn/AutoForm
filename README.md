@@ -1,9 +1,9 @@
 <div align="center">
 
 # AutoForm  
-### FEU Tech Evaluation Auto-fill Extension
+### FEU Tech Teacher & Service Evaluation Auto-fill Extension
 
-**Streamline your FEU Tech teacher evaluations with one click**
+**Streamline your FEU Tech evaluations with one click**
 
 <br>
 
@@ -17,7 +17,7 @@
 
 ## 📖 About
 
-AutoForm is a Chrome extension designed specifically for FEU Tech students to simplify the teacher evaluation process. Instead of manually clicking through dozens of rating questions, complete your evaluations in seconds with automated form filling.
+AutoForm is a Chrome extension designed specifically for FEU Tech students to simplify both **teacher evaluations** and **service evaluations**. Complete evaluations for teachers, Library, Health Services, Discipline Unit, Student Activities, and Guidance and Counseling in seconds with automated form filling.
 
 ## ✨ Features
 

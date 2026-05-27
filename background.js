@@ -2,42 +2,32 @@ chrome.runtime.onInstalled.addListener(() => {
   console.log('Auto Fill Evaluation Extension Installed');
 });
 
-// Listen for messages from the popup
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "fillForm") {
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
       chrome.scripting.executeScript({
         target: {tabId: tabs[0].id},
         function: fillFormContent,
-        args: [request.value]
+        args: [request.value, request.type || "rating"]
       });
     });
   }
 });
 
-// Content script function that will be injected
-function fillFormContent(value) {
-  console.log('Starting form fill with value:', value);
-  
-  // Function to trigger change event
+function fillFormContent(value, type = "rating") {
   const triggerChange = (element) => {
     element.dispatchEvent(new Event('change', { bubbles: true }));
     element.dispatchEvent(new Event('input', { bubbles: true }));
     element.dispatchEvent(new Event('blur', { bubbles: true }));
   };
 
-  // Handle Google Forms specifically first
-  const isGoogleForm = window.location.hostname.includes('docs.google.com') || 
+  const isGoogleForm = window.location.hostname.includes('docs.google.com') ||
                       window.location.hostname.includes('forms.google.com');
-  
+
   if (isGoogleForm) {
-    console.log('Detected Google Form');
-    
-    // Method 1: Direct radio button selection
     const allRadioButtons = document.querySelectorAll('div[role="radio"]');
-    console.log('Found Google Form radio buttons:', allRadioButtons.length);
-    
-    // Group radio buttons by their question
+
+    // Group radio buttons by their parent question container
     const questionGroups = new Map();
     allRadioButtons.forEach(radio => {
       const questionContainer = radio.closest('.freebirdFormviewerViewItemsItemItem');
@@ -49,34 +39,28 @@ function fillFormContent(value) {
       }
     });
 
-    // Fill each question
     questionGroups.forEach((radios, container) => {
       const sortedRadios = radios.sort((a, b) => {
         const aIndex = Array.from(container.querySelectorAll('div[role="radio"]')).indexOf(a);
         const bIndex = Array.from(container.querySelectorAll('div[role="radio"]')).indexOf(b);
         return aIndex - bIndex;
       });
-      
+
       const index = Math.min(parseInt(value) - 1, sortedRadios.length - 1);
       if (sortedRadios[index]) {
-        console.log('Clicking radio button at index:', index);
         sortedRadios[index].click();
       }
     });
 
-    // Method 2: Alternative approach using aria-label
+    // Fallback: click by aria-label if direct index didn't work
     const ratingLabels = ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
     const targetLabel = ratingLabels[parseInt(value) - 1];
-    
-    const labeledRadios = document.querySelectorAll(`div[role="radio"][aria-label*="${targetLabel}"]`);
-    console.log('Found labeled radio buttons:', labeledRadios.length);
-    labeledRadios.forEach(radio => {
-      radio.click();
-    });
 
-    // Method 3: Try to find and click the radio button container
+    const labeledRadios = document.querySelectorAll(`div[role="radio"][aria-label*="${targetLabel}"]`);
+    labeledRadios.forEach(radio => radio.click());
+
+    // Another fallback: match by position within each option container
     const radioContainers = document.querySelectorAll('.freebirdFormviewerViewItemsRadioOptionContainer');
-    console.log('Found radio containers:', radioContainers.length);
     radioContainers.forEach(container => {
       const radio = container.querySelector('div[role="radio"]');
       if (radio) {
@@ -88,36 +72,56 @@ function fillFormContent(value) {
     });
   }
 
-  // Handle regular forms
-  const radioButtons = document.querySelectorAll('input[type="radio"]');
-  console.log('Found regular radio buttons:', radioButtons.length);
-  
-  // Group radio buttons by name
+  // FEU Tech evaluation forms use radio buttons with numeric values
+  const serviceRadioButtons = document.querySelectorAll('input[type="radio"]');
+
   const radioGroups = {};
-  radioButtons.forEach(radio => {
-    if (!radioGroups[radio.name]) {
-      radioGroups[radio.name] = [];
-    }
+  serviceRadioButtons.forEach(radio => {
+    if (!radioGroups[radio.name]) radioGroups[radio.name] = [];
     radioGroups[radio.name].push(radio);
   });
 
-  // Fill each group
   Object.values(radioGroups).forEach(group => {
-    const sortedGroup = group.sort((a, b) => a.value - b.value);
-    const index = Math.min(parseInt(value) - 1, sortedGroup.length - 1);
-    if (sortedGroup[index]) {
-      sortedGroup[index].checked = true;
-      triggerChange(sortedGroup[index]);
+    const sortedGroup = group.sort((a, b) => (parseInt(a.value)||0) - (parseInt(b.value)||0));
+
+    // Rating questions have 4 options (SD/D/A/SA); frequency questions have 5.
+    // We check option count instead of question text because rating statements
+    // can contain words like "visit" or "term" that would cause false matches.
+    const isFrequencyGroup = sortedGroup.length === 5;
+    const isRatingGroup    = sortedGroup.length === 4;
+
+    if (type === "frequency" && !isFrequencyGroup) return;
+    if (type === "rating"    && !isRatingGroup)    return;
+
+    let targetValue;
+    if (type === "frequency") {
+      targetValue = parseInt(value);
+    } else {
+      // Form uses a 1–4 scale, so cap any 5-star input at 4 (Strongly Agree)
+      targetValue = Math.min(parseInt(value), 4);
+    }
+
+    const targetRadio = sortedGroup.find(r => parseInt(r.value) === targetValue);
+    if (targetRadio) {
+      targetRadio.checked = true;
+      targetRadio.click();
+      triggerChange(targetRadio);
     }
   });
 
-  // Try to fill select dropdowns
+  // Auto-check the data privacy checkbox if present
+  const privacyCheckbox = document.querySelector('input[type="checkbox"]');
+  if (privacyCheckbox && !privacyCheckbox.checked) {
+    privacyCheckbox.checked = true;
+    privacyCheckbox.click();
+    triggerChange(privacyCheckbox);
+  }
+
   const dropdowns = document.querySelectorAll('select');
-  console.log('Found dropdowns:', dropdowns.length);
   dropdowns.forEach(dropdown => {
     const options = Array.from(dropdown.options);
-    const matchingOption = options.find(opt => 
-      opt.value === value || 
+    const matchingOption = options.find(opt =>
+      opt.value === value ||
       opt.text.includes(value) ||
       opt.text.toLowerCase().includes('rating') ||
       opt.text.toLowerCase().includes('score')
@@ -128,9 +132,7 @@ function fillFormContent(value) {
     }
   });
 
-  // Try to fill number inputs
   const numberInputs = document.querySelectorAll('input[type="number"]');
-  console.log('Found number inputs:', numberInputs.length);
   numberInputs.forEach(input => {
     const max = parseInt(input.max) || 5;
     const min = parseInt(input.min) || 1;
@@ -139,27 +141,19 @@ function fillFormContent(value) {
     triggerChange(input);
   });
 
-  // Try to fill text inputs that might be for ratings
   const textInputs = document.querySelectorAll('input[type="text"]');
-  console.log('Found text inputs:', textInputs.length);
   textInputs.forEach(input => {
     const label = input.previousElementSibling?.textContent?.toLowerCase() || '';
     const placeholder = input.placeholder?.toLowerCase() || '';
     const name = input.name?.toLowerCase() || '';
     const id = input.id?.toLowerCase() || '';
 
-    if (label.includes('rating') || 
-        placeholder.includes('rating') || 
-        name.includes('rating') ||
-        id.includes('rating') ||
-        label.includes('score') || 
-        placeholder.includes('score') ||
-        name.includes('score') ||
-        id.includes('score')) {
+    if (label.includes('rating') || placeholder.includes('rating') ||
+        name.includes('rating')  || id.includes('rating') ||
+        label.includes('score')  || placeholder.includes('score') ||
+        name.includes('score')   || id.includes('score')) {
       input.value = value;
       triggerChange(input);
     }
   });
-
-  console.log('Form fill completed');
 }
