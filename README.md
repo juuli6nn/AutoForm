@@ -1,117 +1,77 @@
-<div align="center">
+# AutoForm
 
-# AutoForm  
-### FEU Tech Teacher & Service Evaluation Auto-fill Extension
+### FEU Tech Teacher and Service Evaluation Auto-Fill Extension
 
-**Streamline your FEU Tech evaluations with one click**
-
-<br>
-
-[![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?logo=google-chrome)]([https://chrome.google.com/webstore](https://chromewebstore.google.com/detail/lekpopkfjaohjmcibpbhedohepknohha?utm_source=item-share-cb))
-[![Version](https://img.shields.io/badge/version-1.0-orange.svg)](manifest.json)
-
-</div>
-
+AutoForm is a Google Chrome extension designed for FEU Tech students to streamline both teacher and institutional service evaluations. It automates the form-filling process for faculty, library, health services, discipline unit, student activities, and guidance and counseling evaluations.
 
 ---
 
-## 📖 About
+## Features
 
-AutoForm is a Chrome extension designed specifically for FEU Tech students to simplify both **teacher evaluations** and **service evaluations**. Complete evaluations for teachers, Library, Health Services, Discipline Unit, Student Activities, and Guidance and Counseling in seconds with automated form filling.
+### Ratings Tab
+* **Fill Highest:** Automatically applies a 5/5 (Strongly Agree) rating to all applicable evaluation fields.
+* **Fill Lowest:** Automatically applies a 1/5 (Strongly Disagree) rating to all applicable evaluation fields.
+* **Custom Rating:** Features a slider interface (1 to 5) to let users specify a custom rating value, applied globally by clicking **Apply Rating**.
 
-## ✨ Features
+### Frequency Tab
+* **Targeted Frequency Selection:** Specifically designed to answer institutional service questions regarding "How often do you visit" or utilize campus resources.
+* **Granular Options:** Offers single-click population for specific frequency metrics:
+  * Once a week (1)
+  * Once a month (2)
+  * Once a term (3)
+  * Once a year (4)
+  * Others (5)
 
-- **🚀 Fill Highest** - Automatically apply 5-star ratings to all fields
-- **📉 Fill Lowest** - Automatically apply 1-star ratings to all fields
-- **🎯 Custom Rating** - Choose any rating (1-5) and apply it to all fields
-- **🌓 Dark Mode** - Automatic theme switching based on system preference
-- **⚡ Instant Feedback** - Visual confirmation when forms are filled
-- **🎨 Modern UI** - Clean, professional interface with smooth animations
+---
 
+## Installation
 
-## 🚀 Installation
+### From Chrome Web Store
+1. Navigate to the [Chrome Web Store page](https://chromewebstore.google.com/detail/lekpopkfjaohjmcibpbhedohepknohha?utm_source=item-share-cb).
+2. Click **Add to Chrome**.
+3. Confirm the installation prompt.
 
-### From Chrome Web Store (Recommended)
-1. Visit the [Chrome Web Store page](https://chromewebstore.google.com/detail/lekpopkfjaohjmcibpbhedohepknohha?utm_source=item-share-cb)
-2. Click "Add to Chrome"
-3. Confirm the installation
+---
 
-## 📝 How to Use
+## How to Use
 
-1. Navigate to your FEU Tech teacher evaluation form:
+1. Navigate to the official FEU Tech evaluation portal:
    ```
    https://solar.feutech.edu.ph/online/faculty/evaluation
    ```
-2. Click the AutoForm extension icon in your Chrome toolbar
-3. Choose your preferred option:
-   - **Fill Highest** - For 5-star ratings
-   - **Fill Lowest** - For 1-star ratings
-   - **Custom Rating** - Use the slider (1-5) and click "Fill"
-4. Your evaluation form is filled instantly!
-5. Review and submit your evaluation
-
-## 🛠️ Tech Stack
-
-- **HTML5** - Structure
-- **CSS3** - Styling with CSS custom properties for theming
-- **Vanilla JavaScript** - No frameworks, pure JS
-- **Chrome Extension Manifest V3** - Latest extension standard
-
-## � Privacy & Security
-
-- ✅ **No data collection** - Your information stays private
-- ✅ **No external servers** - Everything runs locally in your browser
-- ✅ **Minimal permissions** - Only accesses FEU Tech evaluation pages
-- ✅ **Open source** - Code is transparent and auditable
-
-## 🤝 Contributing
-
-Contributions are welcome! Here's how you can help:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Development Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/autoform.git
-
-# Navigate to the project directory
-cd autoform
-
-# Load the extension in Chrome (Developer Mode)
-# chrome://extensions/ > Load unpacked > Select folder
-```
-
-## 🐛 Bug Reports & Feature Requests
-
-Found a bug or have a feature idea? Please open an issue on GitHub:
-
-1. Go to the [Issues](https://github.com/yourusername/autoform/issues) page
-2. Click "New Issue"
-3. Describe the bug or feature request in detail
-
-## ⚠️ Disclaimer
-
-This extension is created by FEU Tech students to help streamline the evaluation process. Please use it responsibly and provide honest feedback to help improve the quality of education at FEU Tech.
-
-
-## 👨‍💻 Author
-
-- GitHub: [@yourusername](https://github.com/juuli6nn)
-
-## 🙏 Acknowledgments
-
-- Built for FEU Tech students, by FEU Tech students
-- Inspired by the need to save time during evaluation periods
-- Thanks to all contributors and users!
+2. Open the AutoForm extension from the Chrome toolbar.
+3. Select either the **Ratings** or **Frequency** tab depending on the current section of the evaluation.
+4. Click your desired configuration to populate the form instantly.
+5. Review the automated selections and submit the evaluation manually.
 
 ---
 
-<div align="center"> 
-  **If you find this helpful, please ⭐ star this repository!**
-</div>
+## Technical Architecture
+
+* **Manifest Specification:** Chrome Extensions Manifest V3
+* **Frontend UI:** HTML5 and CSS3 utilizing system-preferred dark mode capabilities and custom properties.
+* **Core Logic:** Vanilla JavaScript, operating without external framework dependencies for optimal execution speed.
+
+---
+
+## Privacy and Security
+
+* **Local Execution:** All data processing occurs strictly within the client browser sandbox; no external network requests are made.
+* **Data Privacy:** The extension does not collect, log, or transmit personal student information or portal credentials.
+* **Scoped Permissions:** Requests access exclusively to the domain host required for FEU Tech evaluation systems.
+
+---
+
+## Contributing
+
+1. Fork the repository.
+2. Create a standardized feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit codebase modifications (`git commit -m 'Add some AmazingFeature'`).
+4. Push updates to the branch (`git push origin feature/AmazingFeature`).
+5. Open a formal Pull Request for review.
+
+---
+
+## Disclaimer
+
+This extension is an independent tool developed by students to optimize administrative workflows. Users are responsible for ensuring that the submitted automated data accurately reflects their assessment of university services and instruction quality.
