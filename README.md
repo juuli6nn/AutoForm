@@ -1,4 +1,4 @@
-# AutoForm
+<center># AutoForm</center>
 
 ### FEU Tech Teacher and Service Evaluation Auto-Fill Extension
 
