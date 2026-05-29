@@ -1,4 +1,4 @@
-<center># AutoForm</center>
+<h1 align="center">AutoForm</h1>
 
 ### FEU Tech Teacher and Service Evaluation Auto-Fill Extension
 
