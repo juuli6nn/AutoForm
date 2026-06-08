@@ -1,7 +1,9 @@
 <h1 align="center">AutoForm</h1>
 
-### FEU Tech Teacher and Service Evaluation Auto-Fill Extension
+### <h3 align="center">FEU Tech Teacher and Service Evaluation Auto-Fill Extension</center>
 
+---
+## Description
 AutoForm is a Google Chrome extension designed for FEU Tech students to streamline both teacher and institutional service evaluations. It automates the form-filling process for faculty, library, health services, discipline unit, student activities, and guidance and counseling evaluations.
 
 ---
