@@ -2,7 +2,7 @@
   "name": "AutoForm",
   "description": "Auto-fill FEU Tech teacher and service evaluations instantly",
   "manifest_version": 3,
-  "version": "1.0",
+  "version": "2.0",
   "permissions": ["scripting", "tabs"],
   "host_permissions": [
     "https://solar.feutech.edu.ph/*"
